@@ -18,9 +18,22 @@
 		C368283D2CB2D65100D34948 /* wingly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wingly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		C316407A2CB2E4D700D9C280 /* Exceptions for "wingly" folder in "wingly" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"GoogleService-Info.plist",
+			);
+			target = C368283C2CB2D65100D34948 /* wingly */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		C368283F2CB2D65100D34948 /* wingly */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C316407A2CB2E4D700D9C280 /* Exceptions for "wingly" folder in "wingly" target */,
+			);
 			path = wingly;
 			sourceTree = "<group>";
 		};
