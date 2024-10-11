@@ -16,19 +16,12 @@ struct ContentView: View {
     
     var body: some View {
         if showSplashScreen {
-            ZStack(alignment: .center) {
-                Color.white
-                Image("splash_logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: widthView * 0.266, height: heightView * 0.088)
-            }
-            .frame(width: widthView, height: heightView)
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    showSplashScreen = false
+            SplashScreenView()
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        showSplashScreen = false
+                    }
                 }
-            }
         } else {
             VStack {
                 Image(systemName: "globe")
