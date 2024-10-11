@@ -12,6 +12,8 @@ struct ContentView: View {
     @State private var widthView = UIScreen.main.bounds.width
     @State private var heightView = UIScreen.main.bounds.height
     
+    @AppStorage("log_Status") var status = false
+    
     @State private var showSplashScreen = true
     
     var body: some View {
@@ -23,13 +25,17 @@ struct ContentView: View {
                     }
                 }
         } else {
-            VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundStyle(.tint)
-                Text("Hello, world!")
+            if !status {
+                StartView()
+            } else {
+                VStack {
+                    Image(systemName: "globe")
+                        .imageScale(.large)
+                        .foregroundStyle(.tint)
+                    Text("Hello, world!")
+                }
+                .frame(width: widthView, height: heightView)
             }
-            .frame(width: widthView, height: heightView)
         }
     }
 }

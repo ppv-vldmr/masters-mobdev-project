@@ -1,32 +1,36 @@
 import SwiftUI
 
 struct StartView: View {
+    
+    @State private var widthView = UIScreen.main.bounds.width
+    @State private var heightView = UIScreen.main.bounds.height
+    
+    @State private var showDialog = false
+    
     var body: some View {
         VStack {
             Image(uiImage: UIImage(named: "Logo_start")!)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 100)
-                .padding(.top, 20)
+                .padding(heightView * 0.054 / 5)
+                .frame(width: widthView, height: heightView * 0.054)
             
             Spacer()
             
-            HStack {
-                Text("Узнайте, что \nпроисходит в мире \nпрямо сейчас")
-                    .font(Font.custom("SFProDisplay-Bold", size: 32))
-                    .bold()
-            }
-            .padding(.trailing, 45)
+            Text("Узнайте, что \nпроисходит в мире \nпрямо сейчас")
+                .font(Font.custom("SFProDisplay-Bold", size: 32))
+                .bold()
+                .padding(.trailing, widthView * 0.15)
+                .frame(width: widthView * 0.91, height: heightView * 0.162)
             
             Button {
                 
             } label: {
                 ZStack{
                     Rectangle()
-                        .frame(width: 343, height: 54)
+                        .frame(width: widthView * 0.91, height: heightView * 0.066)
                         .cornerRadius(14)
                         .foregroundColor(.black)
-                        
                     Text("Войти")
                         .foregroundColor(.white)
                         .bold()
@@ -37,7 +41,7 @@ struct StartView: View {
             
             ZStack {
                 Rectangle()
-                    .frame(width: 335, height: 1)
+                    .frame(width: widthView * 0.91, height: 1)
                     .foregroundColor(.gray)
                     .opacity(0.5)
                 
@@ -48,15 +52,15 @@ struct StartView: View {
                     .background(.white)
                     .font(Font.custom("SFProDisplay-Bold", size: 16))
             }
-            .padding(.top, 20)
-            .padding(.bottom, 20)
+            .padding(.top, heightView * 0.02)
+            .padding(.bottom, heightView * 0.02)
             
             Button {
                 
             } label: {
                 ZStack{
                     Rectangle()
-                        .frame(width: 343, height: 54)
+                        .frame(width: widthView * 0.91, height: heightView * 0.066)
                         .cornerRadius(14)
                         .foregroundColor(.white)
                         .overlay(
@@ -72,13 +76,43 @@ struct StartView: View {
             }
             
             Spacer()
-            Text("Регистрируясь, вы принимаете Условия сервиса,\nПолитику конфиденциальности и Политику\nв отношении файлов cookie")
-                .foregroundColor(.gray)
-                .opacity(0.5)
-                .font(Font.custom("SFProDisplay-Bold", size: 14))
-                .padding(.trailing, 15)
             
-           
+            Button {
+                showDialog = true
+            } label: {
+                VStack(alignment: .leading) {
+                    Text("Регистрируясь, вы принимаете ")
+                        .foregroundColor(Color(hex: "898989"))
+                        .font(Font.custom("SFProDisplay-Bold", size: 14))
+                    + Text("Условия сервиса,")
+                        .foregroundColor(Color(hex: "865DE6"))
+                        .font(Font.custom("SFProDisplay-Bold", size: 14))
+                    Text("Политику конфиденциальности ")
+                        .foregroundColor(Color(hex: "865DE6"))
+                        .font(Font.custom("SFProDisplay-Bold", size: 14))
+                    + Text("и ")
+                        .foregroundColor(Color(hex: "898989"))
+                        .font(Font.custom("SFProDisplay-Bold", size: 14))
+                     + Text("Политику")
+                        .foregroundColor(Color(hex: "865DE6"))
+                        .font(Font.custom("SFProDisplay-Bold", size: 14))
+                    Text("в отношении файлов cookie")
+                        .foregroundColor(Color(hex: "865DE6"))
+                        .font(Font.custom("SFProDisplay-Bold", size: 14))
+                }
+            }
+            .frame(width: widthView * 0.91, height: heightView * 0.07)
+        }
+        .confirmationDialog("", isPresented: $showDialog) {
+            Button("Условия сервиса") {
+                showDialog = false
+            }
+            Button("Политика конфиденциальности") {
+                showDialog = false
+            }
+            Button("Политика в отноiyнии файлов cookie") {
+                showDialog = false
+            }
         }
     }
 }
