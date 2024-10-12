@@ -37,13 +37,7 @@ struct ContentView: View {
                         CreateProfileScreenView()
                     }
                 } else {
-                    VStack {
-                        Image(systemName: "globe")
-                            .imageScale(.large)
-                            .foregroundStyle(.tint)
-                        Text("Hello, world!")
-                    }
-                    .frame(width: widthView, height: heightView)
+                    FeedView()
                 }
             }
         }
