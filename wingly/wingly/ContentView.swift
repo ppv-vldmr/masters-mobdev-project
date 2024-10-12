@@ -13,6 +13,8 @@ struct ContentView: View {
     @State private var heightView = UIScreen.main.bounds.height
     
     @AppStorage("log_Status") var status = false
+    @AppStorage("is_newbie") var isNewbie = false
+    @AppStorage("user_login") var userLogin = ""
     
     @State private var showSplashScreen = true
     
@@ -28,13 +30,21 @@ struct ContentView: View {
             if !status {
                 StartView()
             } else {
-                VStack {
-                    Image(systemName: "globe")
-                        .imageScale(.large)
-                        .foregroundStyle(.tint)
-                    Text("Hello, world!")
+                if isNewbie {
+                    if userLogin.isEmpty {
+                        CreateLoginView()
+                    } else {
+                        Text("feed")
+                    }
+                } else {
+                    VStack {
+                        Image(systemName: "globe")
+                            .imageScale(.large)
+                            .foregroundStyle(.tint)
+                        Text("Hello, world!")
+                    }
+                    .frame(width: widthView, height: heightView)
                 }
-                .frame(width: widthView, height: heightView)
             }
         }
     }

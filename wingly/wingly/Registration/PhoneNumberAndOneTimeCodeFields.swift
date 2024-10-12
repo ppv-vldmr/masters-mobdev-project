@@ -10,7 +10,6 @@ import SwiftUI
 import FirebaseAuth
 
 class OneTimeCodeFields: ObservableObject {
-    @AppStorage("log_Status") var status = false
     
     @Published var phoneCode = ""
     
@@ -84,10 +83,6 @@ class OneTimeCodeFields: ObservableObject {
                 }
                 return
             }
-
-            withAnimation{
-                self.status = true
-            }
             
             do {
                 let encodedData = try NSKeyedArchiver.archivedData(withRootObject: credential, requiringSecureCoding: false)
@@ -95,7 +90,7 @@ class OneTimeCodeFields: ObservableObject {
                 defaults.setValue(encodedData, forKey: "credential")
                 defaults.setValue(phoneNumber, forKey: "phoneNumber")
                 
-//                DatabaseManager.writeUserPhoneToDatabase(phoneNumber: phoneNumber)
+                DatabaseManager.shared.writeUserPhoneToDatabase(phone: phoneNumber)
             } catch {
                 print("Failed to save user credentials")
             }
