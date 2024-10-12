@@ -120,7 +120,7 @@ struct FeedPostView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 291, height: 224)
-                    .padding(.top, 160)
+                    .padding(.top, 165)
                     .padding(.leading, 25)
             }
         }
