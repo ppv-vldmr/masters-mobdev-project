@@ -34,7 +34,7 @@ struct ContentView: View {
                     if userLogin.isEmpty {
                         CreateLoginView()
                     } else {
-                        Text("feed")
+                        CreateProfileScreenView()
                     }
                 } else {
                     VStack {

@@ -36,7 +36,7 @@ struct Verification: View {
                     .frame(width: widthView, height: heightView * 0.054)
                 
                 Text("Введите код")
-                    .font(Font.custom("SFProDisplay-Bold", size: 32))
+                    .font(Font.custom("VelaSans-Bold", size: 32))
                     .bold()
                     .frame(width: widthView * 0.91, alignment: .leading)
                     .padding(.top)
@@ -105,7 +105,7 @@ struct Verification: View {
                     }))
                         .frame(width: widthView * 0.93, height: widthView * 0.13)
                         .border(color: .white)
-                        .font(Font.custom("SFProDisplay-Medium", size: 16))
+                        .font(Font.custom("VelaSans-Regular", size: 16))
                         .focused($focusedField, equals: 0)
                         .keyboardType(.numberPad)
                         .opacity(0)
@@ -126,7 +126,7 @@ struct Verification: View {
                                 .foregroundColor(.white)
                             
                             Text("Получить код повторно")
-                                .font(Font.custom("SFProDisplay-Bold", size: 18))
+                                .font(Font.custom("VelaSans-Bold", size: 18))
                                 .foregroundColor(Color(hex: "865DE6"))
                         }
                     }

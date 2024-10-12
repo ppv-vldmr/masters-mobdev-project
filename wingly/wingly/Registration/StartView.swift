@@ -22,10 +22,9 @@ struct StartView: View {
                 Spacer()
                 
                 Text("Узнайте, что \nпроисходит в мире \nпрямо сейчас")
-                    .font(Font.custom("SFProDisplay-Bold", size: 32))
+                    .font(Font.custom("VelaSans-Bold", size: 32))
                     .bold()
-                    .padding(.trailing, widthView * 0.15)
-                    .frame(width: widthView * 0.91, height: heightView * 0.162)
+                    .frame(width: widthView * 0.91, alignment: .leading)
                 
                 Button {
                     showRegistration = true
@@ -38,7 +37,7 @@ struct StartView: View {
                         Text("Войти")
                             .foregroundColor(.white)
                             .bold()
-                            .font(Font.custom("SFProDisplay-Bold", size: 16))
+                            .font(Font.custom("VelaSans-Bold", size: 16))
                     }
                 }
                 .padding(.top, 100)
@@ -54,7 +53,7 @@ struct StartView: View {
                         .opacity(0.5)
                         .bold()
                         .background(.white)
-                        .font(Font.custom("SFProDisplay-Bold", size: 16))
+                        .font(Font.custom("VelaSans-Bold", size: 16))
                 }
                 .padding(.top, heightView * 0.02)
                 .padding(.bottom, heightView * 0.02)
@@ -75,7 +74,7 @@ struct StartView: View {
                         Text("Зарегистрироваться")
                             .foregroundColor(.black)
                             .bold()
-                            .font(Font.custom("SFProDisplay-Bold", size: 16))
+                            .font(Font.custom("VelaSans-Bold", size: 16))
                     }
                 }
                 
@@ -87,22 +86,22 @@ struct StartView: View {
                     VStack(alignment: .leading) {
                         Text("Регистрируясь, вы принимаете ")
                             .foregroundColor(Color(hex: "898989"))
-                            .font(Font.custom("SFProDisplay-Bold", size: 14))
+                            .font(Font.custom("VelaSans-Regular", size: 14))
                         + Text("Условия сервиса,")
                             .foregroundColor(Color(hex: "865DE6"))
-                            .font(Font.custom("SFProDisplay-Bold", size: 14))
+                            .font(Font.custom("VelaSans-Regular", size: 14))
                         Text("Политику конфиденциальности ")
                             .foregroundColor(Color(hex: "865DE6"))
-                            .font(Font.custom("SFProDisplay-Bold", size: 14))
+                            .font(Font.custom("VelaSans-Regular", size: 14))
                         + Text("и ")
                             .foregroundColor(Color(hex: "898989"))
-                            .font(Font.custom("SFProDisplay-Bold", size: 14))
+                            .font(Font.custom("VelaSans-Regular", size: 14))
                         + Text("Политику")
                             .foregroundColor(Color(hex: "865DE6"))
-                            .font(Font.custom("SFProDisplay-Bold", size: 14))
+                            .font(Font.custom("VelaSans-Regular", size: 14))
                         Text("в отношении файлов cookie")
                             .foregroundColor(Color(hex: "865DE6"))
-                            .font(Font.custom("SFProDisplay-Bold", size: 14))
+                            .font(Font.custom("VelaSans-Regular", size: 14))
                     }
                 }
                 .frame(width: widthView * 0.91, height: heightView * 0.07)

@@ -41,7 +41,7 @@ struct Login: View {
                         .frame(width: widthView, height: heightView * 0.054)
                     
                     Text("Введите номер\nтелефона")
-                        .font(Font.custom("SFProDisplay-Bold", size: 32))
+                        .font(Font.custom("VelaSans-Bold", size: 32))
                         .bold()
                         .frame(width: widthView * 0.91, alignment: .leading)
                         .padding(.top)
@@ -54,7 +54,7 @@ struct Login: View {
                             text: Binding(get: { phoneNumber }, set: { phoneNumber = formatNumber(data: $0) })
                         )
                         .keyboardType(.numberPad)
-                        .font(Font.custom("SFProDisplay-Medium", size: 16))
+                        .font(Font.custom("VelaSans-Regular", size: 16))
                         .foregroundColor(.black)
                         .focused($focusedField, equals: 1)
                     }
@@ -78,7 +78,7 @@ struct Login: View {
                             Text("Получить код")
                                 .foregroundColor(.white)
                                 .bold()
-                                .font(Font.custom("SFProDisplay-Bold", size: 16))
+                                .font(Font.custom("VelaSans-Bold", size: 16))
                         }
                     }
                     .padding(.top, heightView * 0.05)

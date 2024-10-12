@@ -31,7 +31,7 @@ struct CreateLoginView: View {
                 .frame(width: widthView, height: heightView * 0.054)
             
             Text("Как вас называть?")
-                .font(Font.custom("SFProDisplay-Bold", size: 32))
+                .font(Font.custom("VelaSans-Bold", size: 32))
                 .bold()
                 .frame(width: widthView * 0.91, alignment: .leading)
                 .padding(.top)
@@ -40,7 +40,7 @@ struct CreateLoginView: View {
             Text("Ваше имя является уникальным. Его можно\nизменить в любое время в настройках")
                 .foregroundColor(.gray)
                 .opacity(0.5)
-                .font(Font.custom("SFProDisplay-Bold", size: 14))
+                .font(Font.custom("VelaSans-Regular", size: 14))
                 .frame(width: widthView * 0.91, alignment: .leading)
                 .padding(.bottom, heightView * 0.08)
             
@@ -51,7 +51,7 @@ struct CreateLoginView: View {
                     userLogin = ($0.starts(with: "@") ? "" : "@") + $0.replacingOccurrences(of: " ", with: "")
                 }))
                 .keyboardType(.asciiCapable)
-                .font(Font.custom("SFProDisplay-Medi", size: 16))
+                .font(Font.custom("VelaSans-Regular", size: 16))
                 .foregroundColor(focusedTextfield ?? false ? .black : .gray.opacity(0.5))
                 .focused($focusedTextfield, equals: true)
             }
@@ -64,7 +64,7 @@ struct CreateLoginView: View {
             
             Text("Такое имя уже существует")
                 .foregroundStyle(Color(hex: "ED2A2A"))
-                .font(Font.custom("SFProDisplay-Medi", size: 14))
+                .font(Font.custom("VelaSans-Regular", size: 14))
                 .frame(width: widthView * 0.91, alignment: .leading)
                 .padding(.vertical, heightView * 0.01)
                 .opacity(userLogin.count >= 4 && (registeredLogins?.contains(userLogin) ?? false) ? 1 : 0)
@@ -83,7 +83,7 @@ struct CreateLoginView: View {
                     Text("Далее")
                         .foregroundColor(.white)
                         .bold()
-                        .font(Font.custom("SFProDisplay-Bold", size: 16))
+                        .font(Font.custom("VelaSans-Bold", size: 16))
                 }
             }
             .disabled(userLogin.count < 4 || (registeredLogins?.contains(userLogin) ?? true))

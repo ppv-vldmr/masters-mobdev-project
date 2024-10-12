@@ -28,7 +28,6 @@ struct AlertView: View {
                     .foregroundColor(.black)
                     .padding(.vertical)
                     .frame(width: UIScreen.main.bounds.width - 100)
-                    .background(Color("yellow"))
                     .cornerRadius(15)
             }
             .frame(alignment: .center)
