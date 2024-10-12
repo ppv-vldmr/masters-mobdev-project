@@ -54,7 +54,7 @@ class OneTimeCodeFields: ObservableObject {
     }
     
     func verifyPhoneNumber(phoneNumber: String) {
-//        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
         
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { code, err in
             if let error = err {
@@ -91,7 +91,7 @@ class OneTimeCodeFields: ObservableObject {
             
             do {
                 let encodedData = try NSKeyedArchiver.archivedData(withRootObject: credential, requiringSecureCoding: false)
-                let defaults = UserDefaults(suiteName: "group.com.pinpoll.me")!
+                let defaults = UserDefaults(suiteName: "group.itmo.masters.wingly")!
                 defaults.setValue(encodedData, forKey: "credential")
                 defaults.setValue(phoneNumber, forKey: "phoneNumber")
                 

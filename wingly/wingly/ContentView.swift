@@ -12,31 +12,30 @@ struct ContentView: View {
     @State private var widthView = UIScreen.main.bounds.width
     @State private var heightView = UIScreen.main.bounds.height
     
+    @AppStorage("log_Status") var status = false
+    
     @State private var showSplashScreen = true
     
     var body: some View {
         if showSplashScreen {
-            ZStack(alignment: .center) {
-                Color.white
-                Image("splash_logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: widthView * 0.266, height: heightView * 0.088)
-            }
-            .frame(width: widthView, height: heightView)
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    showSplashScreen = false
+            SplashScreenView()
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        showSplashScreen = false
+                    }
                 }
-            }
         } else {
-            VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundStyle(.tint)
-                Text("Hello, world!")
+            if !status {
+                StartView()
+            } else {
+                VStack {
+                    Image(systemName: "globe")
+                        .imageScale(.large)
+                        .foregroundStyle(.tint)
+                    Text("Hello, world!")
+                }
+                .frame(width: widthView, height: heightView)
             }
-            .frame(width: widthView, height: heightView)
         }
     }
 }

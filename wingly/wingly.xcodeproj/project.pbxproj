@@ -12,6 +12,7 @@
 		C38488052CB2D9B400567C6F /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = C38488042CB2D9B400567C6F /* FirebaseDatabase */; };
 		C38488072CB2D9B400567C6F /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = C38488062CB2D9B400567C6F /* FirebaseFunctions */; };
 		C38488092CB2D9B400567C6F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C38488082CB2D9B400567C6F /* FirebaseStorage */; };
+		C390A6A32CBA3D4B00602459 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C390A6A22CBA3D4B00602459 /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C390A6A32CBA3D4B00602459 /* FirebaseMessaging in Frameworks */,
 				C38488052CB2D9B400567C6F /* FirebaseDatabase in Frameworks */,
 				C38488012CB2D9B400567C6F /* FirebaseAnalytics in Frameworks */,
 				C38488032CB2D9B400567C6F /* FirebaseAuth in Frameworks */,
@@ -104,6 +106,7 @@
 				C38488042CB2D9B400567C6F /* FirebaseDatabase */,
 				C38488062CB2D9B400567C6F /* FirebaseFunctions */,
 				C38488082CB2D9B400567C6F /* FirebaseStorage */,
+				C390A6A22CBA3D4B00602459 /* FirebaseMessaging */,
 			);
 			productName = wingly;
 			productReference = C368283D2CB2D65100D34948 /* wingly.app */;
@@ -426,6 +429,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C38487FE2CB2D96900567C6F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		C390A6A22CBA3D4B00602459 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C38487FE2CB2D96900567C6F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

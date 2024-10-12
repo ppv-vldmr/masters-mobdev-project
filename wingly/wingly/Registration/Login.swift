@@ -11,20 +11,16 @@ struct Login: View {
     
     @FocusState private var focusedField: Int?
     
-    @State var phoneNumber = ""
+    @State private var phoneNumber = ""
     
-    @State var countryFlagEmoji = ""
+    @State private var countryFlagEmoji = ""
     
-    @State var nextTapped = false
+    @State private var nextTapped = false
     
-    @State var widthView = UIScreen.main.bounds.size.width
-    @State var heightView = UIScreen.main.bounds.size.height
+    @State private var widthView = UIScreen.main.bounds.size.width
+    @State private var heightView = UIScreen.main.bounds.size.height
     
-    @StateObject var oneTimeCodeFields: OneTimeCodeFields = OneTimeCodeFields()
-    
-//    @StateObject var databaseManager: DatabaseManager
-    
-    @State var showLinks = false
+    @StateObject private var oneTimeCodeFields: OneTimeCodeFields = OneTimeCodeFields()
     
     var body: some View {
         if oneTimeCodeFields.error {
@@ -38,75 +34,57 @@ struct Login: View {
                 }
             } else {
                 VStack {
-                    VStack(alignment: .leading, spacing: 40) {
-                        largeLabel()
+                    Image(uiImage: UIImage(named: "Logo_start")!)
+                        .resizable()
+                        .scaledToFit()
+                        .padding(heightView * 0.054 / 5)
+                        .frame(width: widthView, height: heightView * 0.054)
+                    
+                    Text("Введите номер\nтелефона")
+                        .font(Font.custom("SFProDisplay-Bold", size: 32))
+                        .bold()
+                        .frame(width: widthView * 0.91, alignment: .leading)
                         .padding(.top)
-                        .padding(.top)
-                        .padding(.top)
-                        
-                        VStack(alignment: .leading) {
-                            Text("login-section-one-line-one")
-                                .font(Font.custom("SFProDisplay-Medium", size: 16))
-                                .foregroundColor(Color(hex: "bebebe"))
-                            Text("login-section-one-line-two")
-                                .font(Font.custom("SFProDisplay-Medium", size: 16))
-                                .foregroundColor(Color(hex: "bebebe"))
-                        }
-                        
-                        HStack {
-                            Text(countryFlagEmoji)
-                            TextField(
-                                "login-phone-enter",
-                                text: Binding(
-                                    get: {phoneNumber},
-                                    set: {phoneNumber = formatNumber(data: $0)}))
-                            .keyboardType(.numberPad)
-                            .font(Font.custom("SFProDisplay-Medium", size: 16))
-                            .foregroundColor(.selectedItem)
-                            .focused($focusedField, equals: 1)
-                        }
-                        .padding()
-                        .border(color: focusedField == 1 ? .selectedItem : .unselectedItem)
-                        .frame(width: widthView * 0.923)
+                        .padding(.bottom, heightView * 0.1)
+                    
+                    HStack {
+                        Text(countryFlagEmoji)
+                        TextField(
+                            "+7 (999) 999-99-99",
+                            text: Binding(get: { phoneNumber }, set: { phoneNumber = formatNumber(data: $0) })
+                        )
+                        .keyboardType(.numberPad)
+                        .font(Font.custom("SFProDisplay-Medium", size: 16))
+                        .foregroundColor(.black)
+                        .focused($focusedField, equals: 1)
                     }
-                    .padding(.leading)
-                    Spacer()
+                    .padding()
+                    .border(color: focusedField == 1 ? Color(hex: "865DE6") : Color(hex: "F6F6F6"))
+                    .frame(width: widthView * 0.91)
                     
                     Button {
-                        showLinks.toggle()
+                        if (phoneNumber.count > 5) {
+                            nextTapped.toggle()
+                            oneTimeCodeFields.verifyPhoneNumber(phoneNumber: phoneNumber)
+                        }
                     } label: {
-                        VStack {
-                            Text("login-section-two")
-                                .font(Font.custom("SFProDisplay-Regular", size: 18))
-                                .foregroundColor(Color(hex: "bebebe"))
-                            Text("login-section-three")
-                                .font(Font.custom("SFProDisplay-Regular", size: 18))
-                                .foregroundColor(Color(hex: "bebebe"))
-                            + Text("login-section-four")
-                                .font(Font.custom("SFProDisplay-Medium", size: 18))
-                                .foregroundColor(Color(hex: "898989"))
-                            + Text("login-section-five")
-                                .font(Font.custom("SFProDisplay-Regular", size: 18))
-                                .foregroundColor(Color(hex: "bebebe"))
-                            + Text("login-section-six")
-                                .font(Font.custom("SFProDisplay-Medium", size: 18))
-                                .foregroundColor(Color(hex: "898989"))
+                        ZStack{
+                            Rectangle()
+                                .frame(width: widthView * 0.91, height: heightView * 0.066)
+                                .cornerRadius(14)
+                                .foregroundColor(.black)
+                                .opacity(phoneNumber == "" ? 0.5 : 1)
+                                
+                            Text("Получить код")
+                                .foregroundColor(.white)
+                                .bold()
+                                .font(Font.custom("SFProDisplay-Bold", size: 16))
                         }
                     }
-                    .confirmationDialog("Choose", isPresented: $showLinks, titleVisibility: .hidden) {
-                        Button(String(format: NSLocalizedString("terms-of-service", comment: ""), "")) {
-                            UIApplication.shared.open(URL(string: "https://pinpoll.web.app/terms.html".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!, options: [:], completionHandler: nil)
-                            showLinks.toggle()
-                        }
-                        Button(String(format: NSLocalizedString("privacy-policy", comment: ""), "")) {
-                            UIApplication.shared.open(URL(string: "https://pinpoll.web.app/privacy.html".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!, options: [:], completionHandler: nil)
-                            showLinks.toggle()
-                        }
-                    }
-
-
-                    nextButton()
-                        .padding(.bottom)
+                    .padding(.top, heightView * 0.05)
+                    .padding(.bottom)
+                    
+                    Spacer()
                 }
                 .onAppear {
                     focusedField = 1
@@ -598,40 +576,6 @@ struct Login: View {
             return String(s)
         } else {
             return ""
-        }
-    }
-    
-    private func largeLabel() -> some View {
-        return VStack(alignment: .leading) {
-            HStack {
-                Text("login-heding-one")
-                    .font(Font.custom("SFProDisplay-Bold", size: 34))
-                Spacer()
-            }
-            HStack {
-                Text("login-heding-two")
-                    .font(Font.custom("SFProDisplay-Bold", size: 34))
-                Spacer()
-            }
-        }
-    }
-    
-    private func nextButton() -> some View {
-        return Button {
-            if (phoneNumber.count > 5) {
-                nextTapped.toggle()
-                oneTimeCodeFields.verifyPhoneNumber(phoneNumber: phoneNumber)
-            }
-        } label: {
-            ZStack {
-                Rectangle()
-                    .frame(width: widthView * 0.88, height: heightView / 15)
-                    .cornerRadius(14)
-                    .foregroundColor(phoneNumber.count > 5 ? .selectedItem : .unselectedItem)
-                Text("login-button")
-                    .font(Font.custom("SFProDisplay-Bold", size: 18))
-                    .foregroundColor(phoneNumber.count > 5 ? .white : .black)
-            }
         }
     }
     
