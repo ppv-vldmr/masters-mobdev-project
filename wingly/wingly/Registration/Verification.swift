@@ -49,7 +49,7 @@ struct Verification: View {
                             Rectangle()
                                 .frame(width: widthView * 0.13, height: widthView * 0.13)
                                 .foregroundColor(.white)
-                                .border(color: oneTimeCodeFields.otpField.count >= 6 ? Color(hex: "865DE6") : Color(hex: "F6F6F6"))
+                                .border(color: oneTimeCodeFields.otpField.count >= 1 ? Color(hex: "865DE6") : Color(hex: "F6F6F6"))
                             Text(oneTimeCodeFields.otp1)
                                 .foregroundColor(.black)
                         }
@@ -57,7 +57,7 @@ struct Verification: View {
                             Rectangle()
                                 .frame(width: widthView * 0.13, height: widthView * 0.13)
                                 .foregroundColor(.white)
-                                .border(color: oneTimeCodeFields.otpField.count >= 6 ? Color(hex: "865DE6") : Color(hex: "F6F6F6"))
+                                .border(color: oneTimeCodeFields.otpField.count >= 2 ? Color(hex: "865DE6") : Color(hex: "F6F6F6"))
                             Text(oneTimeCodeFields.otp2)
                                 .foregroundColor(.black)
                         }
@@ -65,7 +65,7 @@ struct Verification: View {
                             Rectangle()
                                 .frame(width: widthView * 0.13, height: widthView * 0.13)
                                 .foregroundColor(.white)
-                                .border(color: oneTimeCodeFields.otpField.count >= 6 ? Color(hex: "865DE6") : Color(hex: "F6F6F6"))
+                                .border(color: oneTimeCodeFields.otpField.count >= 3 ? Color(hex: "865DE6") : Color(hex: "F6F6F6"))
                             Text(oneTimeCodeFields.otp3)
                                 .foregroundColor(.black)
                         }
@@ -73,7 +73,7 @@ struct Verification: View {
                             Rectangle()
                                 .frame(width: widthView * 0.13, height: widthView * 0.13)
                                 .foregroundColor(.white)
-                                .border(color: oneTimeCodeFields.otpField.count >= 6 ? Color(hex: "865DE6") : Color(hex: "F6F6F6"))
+                                .border(color: oneTimeCodeFields.otpField.count >= 4 ? Color(hex: "865DE6") : Color(hex: "F6F6F6"))
                             Text(oneTimeCodeFields.otp4)
                                 .foregroundColor(.black)
                         }
@@ -81,7 +81,7 @@ struct Verification: View {
                             Rectangle()
                                 .frame(width: widthView * 0.13, height: widthView * 0.13)
                                 .foregroundColor(.white)
-                                .border(color: oneTimeCodeFields.otpField.count >= 6 ? Color(hex: "865DE6") : Color(hex: "F6F6F6"))
+                                .border(color: oneTimeCodeFields.otpField.count >= 5 ? Color(hex: "865DE6") : Color(hex: "F6F6F6"))
                             Text(oneTimeCodeFields.otp5)
                                 .foregroundColor(.black)
                         }
@@ -100,7 +100,9 @@ struct Verification: View {
                     }, set: {
                         oneTimeCodeFields.otpField = $0
                         if (oneTimeCodeFields.otpField.count == 6) {
-                            oneTimeCodeFields.verifyCode(phoneNumber: phoneNumber)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                oneTimeCodeFields.verifyCode(phoneNumber: phoneNumber)
+                            }
                         }
                     }))
                         .frame(width: widthView * 0.93, height: widthView * 0.13)

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import FirebaseDatabase
+import FirebaseStorage
 
 class DatabaseManager: ObservableObject {
     
@@ -75,6 +76,14 @@ class DatabaseManager: ObservableObject {
             Database.database().reference().child("profiles").child(userLogin).child("name").setValue(name)
             Database.database().reference().child("profiles").child(userLogin).child("surname").setValue(surname)
             Database.database().reference().child("profiles").child(userLogin).child("info").setValue(info)
+        }
+    }
+    
+    func saveAvatar(_ image: UIImage) {
+        if let data = image.pngData() {
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/png"
+            Storage.storage().reference().child("avatars").child(phoneNumber).putData(data, metadata: metadata)
         }
     }
 }
