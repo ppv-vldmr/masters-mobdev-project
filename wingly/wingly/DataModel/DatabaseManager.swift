@@ -69,4 +69,12 @@ class DatabaseManager: ObservableObject {
         userLogin = login
         Database.database().reference().child("logins").child(login).setValue(phoneNumber)
     }
+    
+    func saveUserProfileDate(name: String, surname: String, info: String) {
+        if !userLogin.isEmpty {
+            Database.database().reference().child("profiles").child(userLogin).child("name").setValue(name)
+            Database.database().reference().child("profiles").child(userLogin).child("surname").setValue(surname)
+            Database.database().reference().child("profiles").child(userLogin).child("info").setValue(info)
+        }
+    }
 }
