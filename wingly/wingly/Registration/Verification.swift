@@ -29,7 +29,7 @@ struct Verification: View {
             }
         } else {
             VStack {
-                Image(uiImage: UIImage(named: "Logo_start")!)
+                Image("Logo_start")
                     .resizable()
                     .scaledToFit()
                     .padding(heightView * 0.054 / 5)
@@ -104,7 +104,7 @@ struct Verification: View {
                         }
                     }))
                         .frame(width: widthView * 0.93, height: widthView * 0.13)
-                        .border(color: .selectedItem)
+                        .border(color: .white)
                         .font(Font.custom("SFProDisplay-Medium", size: 16))
                         .focused($focusedField, equals: 0)
                         .keyboardType(.numberPad)
@@ -139,6 +139,13 @@ struct Verification: View {
                 oneTimeCodeFields.otpField = ""
                 focusedField = oneTimeCodeFields.otpField.count
                 startTimer()
+            }
+            .onDisappear {
+                let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+                UNUserNotificationCenter.current().requestAuthorization(
+                    options: authOptions,
+                    completionHandler: { _, _ in }
+                )
             }
         }
     }

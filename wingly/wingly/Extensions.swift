@@ -22,8 +22,6 @@ extension Date {
 }
 
 extension Color: Codable {
-    public static var selectedItem = Color(red: 57/255, green: 95/255, blue: 241/255)
-    public static var unselectedItem = Color(red: 243/255, green: 243/255, blue: 243/255)
     
     init(hex: String) {
         let rgba = hex.toRGBA()
