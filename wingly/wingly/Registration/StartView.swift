@@ -113,7 +113,7 @@ struct StartView: View {
                 Button("Политика конфиденциальности") {
                     showDialog = false
                 }
-                Button("Политика в отноiyнии файлов cookie") {
+                Button("Политика в отношении файлов cookie") {
                     showDialog = false
                 }
             }
