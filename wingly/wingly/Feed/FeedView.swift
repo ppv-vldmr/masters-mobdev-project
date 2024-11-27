@@ -8,68 +8,36 @@
 import SwiftUI
 
 struct FeedView: View {
+    
     var body: some View {
-        VStack {
-            
-            HStack {
-                
+        NavigationStack {
+            VStack {
                 HStack {
-                    Image(uiImage: UIImage(named: "bell")!)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 24, height: 24)
-                        .padding(.top, 20)
+                    Text("Для вас")
+                        .font(Font.custom("VelaSans-Bold", size: 16))
+                    
+                    Spacer()
+                    
+                    Text("Рекомендации")
+                        .font(Font.custom("VelaSans-Bold", size: 16))
+                        .opacity(0.4)
                 }
-                .opacity(0)
-                .padding(.leading, 100)
+                .frame(width: 250)
+                .padding(.top, 5)
                 
-                Image("Logo_start")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100)
-                    .padding(.top, 20)
-                
-                HStack {
-                    Button {
-                        
-                    } label: {
-                        Image(uiImage: UIImage(named: "bell")!)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 24, height: 24)
-                            .padding(.top, 20)
-                    }
+                ZStack {
+                    Rectangle()
+                        .frame(height: 1)
+                        .opacity(0.1)
+                        .padding(.top)
+                    
+                    Rectangle()
+                        .frame(width: 100, height: 3)
+                        .foregroundStyle(Color(red: 134 / 255, green: 93 / 255, blue: 230 / 255))
+                        .padding(.top)
+                        .padding(.trailing, 190)
                 }
-                .padding(.leading, 100)
-            }
-            
-            HStack {
-                Text("Для вас")
-                    .font(Font.custom("VelaSans-Bold", size: 16))
                 
-                Spacer()
-                
-                Text("Рекомендации")
-                    .font(Font.custom("VelaSans-Bold", size: 16))
-                    .opacity(0.4)
-            }
-            .frame(width: 250)
-            .padding(.top, 5)
-            
-            ZStack {
-                Rectangle()
-                    .frame(height: 1)
-                    .opacity(0.1)
-                    .padding(.top)
-                
-                Rectangle()
-                    .frame(width: 100, height: 3)
-                    .foregroundStyle(Color(red: 134 / 255, green: 93 / 255, blue: 230 / 255))
-                    .padding(.top)
-                    .padding(.trailing, 190)
-            }
-            
-            ZStack {
                 ScrollView {
                     FeedPostView()
                     
@@ -83,11 +51,26 @@ struct FeedView: View {
                 .scrollIndicators(.hidden)
                 .frame(height: 630)
                 .padding(.top)
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigation) {
+                    Image("Logo_start")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100)
+                        .padding(.leading, 140)
+                }
                 
-                
-                Spacer()
-                
-                TabBarView()
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        NotifyView()
+                    } label: {
+                        Image(uiImage: UIImage(named: "bell")!)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                    }
+                }
             }
         }
     }

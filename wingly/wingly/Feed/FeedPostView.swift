@@ -9,7 +9,9 @@ import SwiftUI
 
 struct FeedPostView: View {
     
-    @State var isReadMoreTap :Bool = false
+    @AppStorage("save_post") var savePost = false
+    
+    @State var isReadMoreTap: Bool = false
     
     var body: some View {
         VStack {
@@ -45,10 +47,18 @@ struct FeedPostView: View {
                         Label("Уведомлять о новых постах", systemImage: "speaker.wave.2.fill")
                     }
                     
-                    Button {
-                                
-                    } label: {
-                        Label("Добавить в избранное", systemImage: "heart.fill")
+                    if savePost {
+                        Button {
+                            savePost.toggle()
+                        } label: {
+                            Label("Удалить из избранного", systemImage: "heart.slash.fill")
+                        }
+                    } else {
+                        Button {
+                            savePost.toggle()
+                        } label: {
+                            Label("Добавить в избранное", systemImage: "heart.fill")
+                        }
                     }
                     
                     Button {
